@@ -8,8 +8,11 @@ var eventLogger = module.exports = function mongoDbEventLoggerConstructor() {
     if (!typeof payload === 'object') {
       throw Error('Event must be an object');
     }
+    if (!payload.event || typeof payload.event !== 'string' ) {
+      log.warn('Event object doesnt contain an event string');
+    }
     if (!payload.userId) {
-      log.warn('Event doesnt contain userId');
+      log.warn('Event object doesnt contain userId');
     }
     if (!payload.time) {
       payload.time = new Date();
