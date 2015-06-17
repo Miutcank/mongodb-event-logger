@@ -20,5 +20,19 @@ var eventLogger = module.exports = function mongoDbEventLoggerConstructor() {
     return mongodb.insert(payload);
   };
 
+  eventLogger.getLogs = function getLogs(eventName) {
+    return mongodb.find({ event: eventName });
+  };
+
+  eventLogger.getAggregatedEventCounts = function getAggregatedEventCounts(eventName, groupQuery) {
+    return mongodb.aggregate([
+      { $match: { event: eventName } },
+      { $group: {
+          _id: groupQuery,
+          count: { $sum: 1 }
+      }}
+    ]);
+  };
+
   return eventLogger;
 };

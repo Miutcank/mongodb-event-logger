@@ -28,5 +28,10 @@ var mongoDbUtil = module.exports = function MongoDBConstructor(config) {
     return mongoDbUtil.connection.collection(config.collection).insert(data);
   };
 
+  mongoDbUtil.aggregate = function aggregate(operators) {
+    // TODO: check connection
+    return mongoDbUtil.connection.collection(config.collection).aggregateAsync(operators);
+  };
+
   return mongoDbUtil;
 };
