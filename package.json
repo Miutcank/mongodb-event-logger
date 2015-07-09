@@ -1,6 +1,6 @@
 {
   "name": "mongodb-event-logger",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "General event logging and querying util that uses MongoDB as storage",
   "main": "index.js",
   "scripts": {
